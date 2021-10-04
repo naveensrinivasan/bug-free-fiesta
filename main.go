@@ -29,6 +29,7 @@ type PR struct {
 	Repository string `csv:"Repository"`
 	Owner      string `csv:"Owner"`
 	URL        string `csv:"URL"`
+	CreatedAt  string `csv:"CreatedAt"`
 }
 
 type result struct {
@@ -225,6 +226,7 @@ func main() {
 				URL:        item.Node.URL,
 				Owner:      item.Node.Repository.Owner.Login,
 				Repository: item.Node.Repository.Name,
+				CreatedAt:  item.Node.CreatedAt.Format("2006-01-02 15:04:05"),
 			})
 		}
 		after := fmt.Sprintf(", after:\"%s\"", r.Data.Search.PageInfo.EndCursor)
@@ -237,6 +239,7 @@ func main() {
 					URL:        item.Node.URL,
 					Owner:      item.Node.Repository.Owner.Login,
 					Repository: item.Node.Repository.Name,
+					CreatedAt:  item.Node.CreatedAt.Format("2006-01-02 15:04:05"),
 				})
 			}
 		}
